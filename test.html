@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulário</title>
+	<style>p{color:blue;font-weight:bold;}img{width:100%;}span{color:grey;}</style>
+	<script type="text/javascript">
+            
+				
+	  var x=0; 
+	  var vet=["imagem1.png","imagem2.jpg","imagem3.jpg"];
+	  function banner()
+	  {
+		document.getElementById('figura').src=vet[x];  
+		x++;   
+		if(x==vet.length)
+		{
+		  x=0;
+		}
+		setTimeout("banner()",3000);
+	  }
+					   
+		   function f1() 
+			{ 
+			 var form = document.getElementById("f1");
+			 
+             var nome = form.elements["nome"]; 		 
+			 if(form.nome.value == "") 
+			   alert("Preencha seu Nome!");
+			   else 
+                alert(form.nome.value); 
+				
+			 var cpf = form.elements["cpf"]; 		 
+			 if(form.cpf.value == "") 
+			   alert("Preencha seu CPF!");
+			   else 
+                alert(form.cpf.value); 
+			 
+			 if(form.email.value == "")
+			  alert("Preencha seu email!");
+			 else
+			 alert(form.email.value);
+			
+			 if(form.tel.value == "")
+			  alert("Preencha seu telefone!");
+			 else
+			 alert(form.tel.value);
+			 
+			  var r = form.elements['sexo']; 
+			  var check = false;
+			   for (var x=0;x<r.length;x++)
+			   {
+			    if(r[x].checked) // .select ou .value
+			    {
+			      check = true;
+			    }
+			   }
+			   if(check == false)
+			     alert("Sexo deve ser marcado.");		
+               else				 
+			     alert(form.elements.namedItem("sexo").value);
+			 
+			 if(form.nt.value == "")
+			  alert("Preencha o nome do autorizado!");
+			 else
+			 alert(form.nt.value);
+			 
+			  if(form.idade.value == "")
+			  alert("Preencha a idade do autorizado!");
+			 else
+			 {
+			   alert(form.idade.value);			 
+			   alert("Cadastro do cliente realizado com sucesso!");
+			 }
+		    }
+			 function criar()
+				{
+				  var no = document.createElement("p");
+				  var elemento = document.createElement("label");
+				  var texto = document.createTextNode("Nome:");
+				  elemento.appendChild(texto);				  
+				  no.appendChild(elemento);				  
+				  elemento = document.createElement("input");
+				  elemento.setAttribute("type","text");
+				  no.appendChild(elemento);
+				  elemento = document.createElement("label");
+				  texto = document.createTextNode("Idade:");
+				  elemento.appendChild(texto);
+				  no.appendChild(elemento);				  
+				  elemento = document.createElement("input");
+				  elemento.setAttribute("type","text");
+				  no.appendChild(elemento);
+				  elemento = document.createElement("button");
+				  texto = document.createTextNode("X");
+				  elemento.appendChild(texto);
+				  elemento.setAttribute("onclick", "remover(this)");
+				  no.appendChild(elemento);				  
+				  document.getElementById("in").appendChild(no);
+				  return false;
+				}
+				function remover(eliminado)
+				{				  
+				  var filho = eliminado.parentNode;
+				  document.getElementById("in").removeChild(filho);
+				} 
+		</script>
+  </head>
+  <body onload="banner()">   
+   <img id="figura"/>  
+        <form id="f1">
+            <fieldset>
+                <legend><span>Cadastro do Cliente</span></legend>
+                <p>
+				<label for="nome">Nome:</label>
+				<input name="nome" type="text">
+				</p>
+				
+				<p>
+				<label for="cpf">CPF:</label>
+				<input type="text" name="cpf"/>
+				</p>
+				
+				<p>
+				<label>e-Mail: </label>
+				<input type="text" name="email"/>
+				</p>
+				
+				<p>
+				<label>Telefone:</label>
+				<input type="text" name="tel"/>
+				</p>
+				
+				<p>
+				<label for="sexo">Sexo:</label>
+				<input type="radio" name="sexo" value="F"/>
+				<label>Feminino</label>
+				<input type="radio" name="sexo" value="M"/>
+				<label>Masculino</label>
+				</p>
+				
+				<p>
+				<label for="aut">Autorizados:</label>
+				</p>
+				<p id="p1">
+				<label for="nt">Nome:</label>
+				<input type="text" name="nt"/>
+				<label for="idade">Idade:</label>
+				<input type="text" name="idade"/>				 
+				<button onclick="return criar()">+</button>
+				</p>			
+				<div id="in"></div>
+				 
+              <br>
+			  <input type="submit" onclick="f1()" value="Enviar"/>
+            </fieldset>
+        </form>
+  </body>
+</html>
